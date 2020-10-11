@@ -46,7 +46,7 @@ app.get('/cuisine',(req,res) => {
 })
 
 //restaurents
-app.get('/restaurents',(req,res) => {
+app.get('/restaurants',(req,res) => {
     var condition = {};
     if(req.query.city && req.query.mealtype){
         condition = {city:req.query.city,"type.mealtype":req.query.mealtype}
@@ -59,7 +59,7 @@ app.get('/restaurents',(req,res) => {
     else{
         condition={}
     }
-    db.collection('restaurent').find(condition).toArray((err,result) => {
+    db.collection('restaurants').find(condition).toArray((err,result) => {
         if(err) throw err;
         res.send(result)
     })
@@ -68,7 +68,7 @@ app.get('/restaurents',(req,res) => {
 //RestaurentDetai+
 app.get('/restaurantdetails/:id',(req,res) => {
     var query = {_id:req.params.id}
-    db.collection('restaurent').find(query).toArray((err,result) => {
+    db.collection('restaurants').find(query).toArray((err,result) => {
         res.send(result)
     })
 })
